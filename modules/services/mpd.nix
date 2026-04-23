@@ -1,9 +1,9 @@
 {...}: let
-  althyria = "192.168.50.239";
+  althyria = "192.168.50.100";
 in {
   services.mpd = {
     enable = true;
-    openFirewall = false;
+    openFirewall = true;
     settings = {
       music_directory = "/srv/multimedia/library/music";
       bind_to_address = "any";

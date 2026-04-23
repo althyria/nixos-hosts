@@ -4,16 +4,20 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    # Include modules for this host.
-    ../../modules/mpd.nix
+    # Global configuration.
+    ../global/age.nix
+    # Include services for this host.
+    ../../modules/services/mpd.nix
+    ../../modules/services/borgmatic.nix
+    # Include containers for this host.
     ../../modules/containers/jellyfin.nix
     ../../modules/containers/lidarr.nix
     ../../modules/containers/prowlarr.nix
     ../../modules/containers/qbittorrent.nix
     ../../modules/containers/radarr.nix
     ../../modules/containers/sonarr.nix
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
   ];
 
   # Configuration for Nix.
