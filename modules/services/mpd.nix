@@ -1,5 +1,5 @@
 {...}: let
-  althyria = "192.168.50.100";
+  althyria = "192.168.50.254";
 in {
   services.mpd = {
     enable = true;
