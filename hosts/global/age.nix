@@ -24,6 +24,11 @@ in {
         rekeyFile = ./secrets/naglfar-borg.age;
         path = "/etc/borgmatic/naglfar.txt";
       };
+
+      rclone-mount-conf = {
+        rekeyFile = ./secrets/rclone-mount.age;
+        path = "/etc/rclone-mount.conf";
+      };
     })
   ];
 }

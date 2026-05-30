@@ -13,7 +13,6 @@
     ../../modules/containers/jellyfin.nix
     ../../modules/containers/lidarr.nix
     ../../modules/containers/prowlarr.nix
-    ../../modules/containers/qbittorrent.nix
     ../../modules/containers/radarr.nix
     ../../modules/containers/sonarr.nix
     # Include the results of the hardware scan.
@@ -59,6 +58,7 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    rclone
   ];
 
   # List services that we want to enable:

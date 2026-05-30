@@ -29,6 +29,22 @@
       fsType = "ext4";
     };
 
+  fileSystems."/srv/multimedia/seedbox" = 
+    {
+      device = "ultra:/downloads/qbittorrent";
+      fsType = "rclone";
+      options = [
+        "nodev"
+        "nofail"
+        "allow_other"
+        "args2env"
+        "config=/etc/rclone-mount.conf"
+        "vfs-cache-mode=writes"
+        "dir-cache-time=30s"
+        "poll-interval=15s"
+      ];
+    };
+
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
