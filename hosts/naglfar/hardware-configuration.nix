@@ -42,6 +42,10 @@
         "vfs-cache-mode=writes"
         "dir-cache-time=30s"
         "poll-interval=15s"
+
+        # Ensure network is up to find host
+        "x-systemd.after=network-online.target"
+        "x-systemd.wants=network-online.target"
       ];
     };
 
