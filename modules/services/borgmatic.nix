@@ -12,8 +12,6 @@
         "/srv/containers/lidarr"
         "/srv/containers/radarr"
         "/srv/containers/sonarr"
-        # seedbox
-        "/srv/containers/qbittorrent"
       ];
 
       # Our borgbase rrepository.
