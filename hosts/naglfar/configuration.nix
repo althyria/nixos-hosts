@@ -1,10 +1,10 @@
 {
   pkgs,
-  inputs,
   ...
 }: {
   imports = [
     # Global configuration.
+    ../global/common.nix
     ../global/age.nix
     # Include services for this host.
     ../../modules/services/mpd.nix
@@ -19,13 +19,6 @@
     ./hardware-configuration.nix
   ];
 
-  # Configuration for Nix.
-  nix.settings = {
-    trusted-users = ["serenity"];
-    # Enable Nix Flakes
-    experimental-features = ["nix-command" "flakes"];
-  };
-
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -38,39 +31,8 @@
     useDHCP = true;
   };
 
-  # Set our time zone.
-  time.timeZone = "Australia/Perth";
-
-  # Define a user account.
-  users.users.serenity = {
-    isNormalUser = true;
-    extraGroups = ["wheel" "docker"];
-    packages = with pkgs; [
-      tree
-    ];
-    openssh.authorizedKeys.keyFiles = [
-      "${inputs.self}/hosts/serenity.pub"
-    ];
-    hashedPassword = "$6$c.ELrHn/TDpLtPGn$ULKyQ/pl6Ec4aQd83AFgi2ZPRUVx.b6RunW8ifl7MPX.J1Nernc4aL4VX5HMCt/qwsG5rl1oiUh34wxb5P2pp.";
-  };
-
-  # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    rclone
-  ];
-
-  # List services that we want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PubkeyAuthentication = true;
-    };
-  };
+  # Add this host's docker group to the user account.
+  users.users.serenity.extraGroups = ["docker"];
 
   # Manage linux containers
   virtualisation = {
@@ -93,7 +55,6 @@
     '';
   };
 
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  # Don't change this ...
   system.stateVersion = "25.11";
 }

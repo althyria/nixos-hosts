@@ -1,5 +1,5 @@
 {
-  description = "Proxmox NixOS VMS";
+  description = "Proxmox NixOS VMS + LXC";
 
   inputs = {
     # Follow the unstable branch of nixpkgs
@@ -31,7 +31,17 @@
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
         ];
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs; hostname = "naglfar"; };
+      };
+
+      heimdall = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/heimdall/configuration.nix
+          agenix.nixosModules.default
+          agenix-rekey.nixosModules.default
+        ];
+        specialArgs = { inherit inputs; hostname = "heimdall"; };
       };
     };
   }

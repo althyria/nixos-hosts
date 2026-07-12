@@ -1,6 +1,4 @@
-{config, lib, ...}: let
-  hostname = config.networking.hostName;
-in {
+{lib, hostname, ...}: {
   # Secret decryption configuration
   age.identityPaths = [
     "/etc/ssh/ssh_host_rsa_key"
