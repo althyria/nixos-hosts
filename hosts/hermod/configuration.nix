@@ -3,6 +3,8 @@
     # Global configuration.
     ../global/age.nix
     ../global/common.nix
+    # Include services for this host.
+    ../../modules/services/irc.nix
     # Proxmox LXC.
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
   ];
