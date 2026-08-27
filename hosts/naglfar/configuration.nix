@@ -4,8 +4,8 @@
 }: {
   imports = [
     # Global configuration.
-    ../global/common.nix
     ../global/age.nix
+    ../global/common.nix
     # Include services for this host.
     ../../modules/services/mpd.nix
     ../../modules/services/borgmatic.nix

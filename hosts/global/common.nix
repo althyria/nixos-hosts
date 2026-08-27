@@ -34,8 +34,12 @@
     settings = {
       PermitRootLogin = "no";
       PubkeyAuthentication = true;
+      PasswordAuthentication = false;
     };
   };
+
+  # Set pi-hole as DNS server.
+  networking.nameservers = ["192.168.50.200"];
 
   # Set our time zone.
   time.timeZone = "Australia/Perth";

@@ -1,8 +1,12 @@
 {modulesPath, ...}: {
   imports = [
     # Global configuration.
-    ../global/common.nix
     ../global/age.nix
+    ../global/common.nix
+    # Include services for this host.
+    ../../modules/services/authelia
+    ../../modules/services/traefik
+    # Proxmox LXC.
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
   ];
 
@@ -22,6 +26,9 @@
 
   # LXC networking needs the firewall opened for sshd explicitly.
   services.openssh.openFirewall = true;
+
+  # Open HTTP/HTTPS for Traefik.
+  networking.firewall.allowedTCPPorts = [80 443];
 
   # Cache DNS lookups to improve performance
   services.resolved.settings.Resolve = {
