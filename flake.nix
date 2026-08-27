@@ -43,6 +43,16 @@
         ];
         specialArgs = { inherit inputs; hostname = "heimdall"; };
       };
+
+      hermod = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/hermod/configuration.nix
+          agenix.nixosModules.default
+          agenix-rekey.nixosModules.default
+        ];
+        specialArgs = { inherit inputs; hostname = "hermod"; };
+      };
     };
   }
     # Setup our devShells for nix develop
