@@ -1,11 +1,11 @@
 {modulesPath, ...}: {
   imports = [
     # Global configuration.
-    ../global/age.nix
-    ../global/common.nix
+    ../../../global/age.nix
+    ../../../global/common.nix
     # Include services for this host.
-    ../../modules/services/authelia
-    ../../modules/services/traefik
+    ../../../../modules/services/authelia
+    ../../../../modules/services/traefik
     # Proxmox LXC.
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
   ];

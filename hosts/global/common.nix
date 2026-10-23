@@ -26,6 +26,15 @@
     wget
     tree
     rclone
+    just
+    htop
+    nano
+    unzip
+    zip
+    ranger
+    tmux
+    git
+    lynx
   ];
 
   # Enable the OpenSSH daemon.

@@ -1,5 +1,7 @@
 {
   lib,
+  inputs,
+  hostDir,
   hostname,
   ...
 }: {
@@ -11,9 +13,10 @@
 
   # YubiKey-based secret rekeying
   age.rekey = {
-    hostPubkey = ../${hostname}/ssh_host_ed25519_key.pub;
+    hostPubkey = "${hostDir}/ssh_host_ed25519_key.pub";
     masterIdentities = [
-      ./secrets/agenix-rekey.pub
+      "${inputs.self}/hosts/global/agenix-rekey.pub"
+      # "/home/serenity/.repo/nixos-hosts/hosts/global/agenix-rekey.pub"
     ];
     storageMode = "local";
     localStorageDir = ./. + "/secrets/rekeyed/${hostname}";
@@ -21,11 +24,11 @@
 
   # Secrets for each host.
   age.secrets = lib.mkMerge [
-    # Naglfar
-    (lib.mkIf (hostname == "naglfar") {
+    # Celadon
+    (lib.mkIf (hostname == "celadon") {
       borgmatic = {
-        rekeyFile = ./secrets/naglfar-borg.age;
-        path = "/etc/borgmatic/naglfar.txt";
+        rekeyFile = ./secrets/celadon-borg.age;
+        path = "/etc/borgmatic/celadon.txt";
       };
 
       rclone-mount-conf = {
@@ -34,8 +37,8 @@
       };
     })
 
-    # Heimdall
-    (lib.mkIf (hostname == "heimdall") {
+    # Vermilion
+    (lib.mkIf (hostname == "vermilion") {
       traefik = {
         rekeyFile = ./secrets/traefik.age;
       };

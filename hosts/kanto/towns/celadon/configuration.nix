@@ -4,17 +4,17 @@
 }: {
   imports = [
     # Global configuration.
-    ../global/age.nix
-    ../global/common.nix
+    ../../../global/age.nix
+    ../../../global/common.nix
     # Include services for this host.
-    ../../modules/services/mpd.nix
-    ../../modules/services/borgmatic.nix
+    ../../../../modules/services/mpd.nix
+    ../../../../modules/services/borgmatic.nix
     # Include containers for this host.
-    ../../modules/containers/jellyfin.nix
-    ../../modules/containers/lidarr.nix
-    ../../modules/containers/prowlarr.nix
-    ../../modules/containers/radarr.nix
-    ../../modules/containers/sonarr.nix
+    ../../../../modules/containers/jellyfin.nix
+    ../../../../modules/containers/lidarr.nix
+    ../../../../modules/containers/prowlarr.nix
+    ../../../../modules/containers/radarr.nix
+    ../../../../modules/containers/sonarr.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -27,7 +27,7 @@
 
   # Configure our networking.
   networking = {
-    hostName = "naglfar";
+    hostName = "celadon";
     useDHCP = true;
   };
 

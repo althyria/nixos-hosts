@@ -2,7 +2,7 @@
   virtualisation.oci-containers.containers = {
     jellyfin = {
       autoStart = true;
-      image = "jellyfin/jellyfin:10.11.5";
+      image = "jellyfin/jellyfin:12.0";
       ports = [
         "8096:8096/tcp" # HTTP traffic
         "8920:8920/tcp" # HTTPS traffic

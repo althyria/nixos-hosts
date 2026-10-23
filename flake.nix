@@ -15,7 +15,7 @@
   };
 
   outputs = { self, nixpkgs, agenix, agenix-rekey, flake-utils, ... } @ inputs: {
-    # Expose the necessary information in your flake so agenix-rekey
+    # Expose the necessary information in our flake so agenix-rekey
     # knows where it has too look for secrets and paths.
     agenix-rekey = agenix-rekey.configure {
       userFlake = self;
@@ -24,44 +24,59 @@
 
     # Configure our systems for each host
     nixosConfigurations = {
-      naglfar = nixpkgs.lib.nixosSystem {
+      celadon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/naglfar/configuration.nix
+          ./hosts/kanto/towns/celadon/configuration.nix
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
         ];
-        specialArgs = { inherit inputs; hostname = "naglfar"; };
+        specialArgs = { 
+          inherit inputs;
+          hostDir = ./hosts/kanto/towns/celadon;
+          hostname = "celadon";
+        };
       };
 
-      heimdall = nixpkgs.lib.nixosSystem {
+      vermilion = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/heimdall/configuration.nix
+          ./hosts/kanto/towns/vermilion/configuration.nix
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
         ];
-        specialArgs = { inherit inputs; hostname = "heimdall"; };
+        specialArgs = { inherit inputs;
+          hostDir = ./hosts/kanto/towns/vermilion;
+          hostname = "vermilion";
+        };
       };
 
-      hermod = nixpkgs.lib.nixosSystem {
+      route1 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/hermod/configuration.nix
+          ./hosts/kanto/routes/route1/configuration.nix
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
         ];
-        specialArgs = { inherit inputs; hostname = "hermod"; };
+        specialArgs = { 
+          inherit inputs;
+          hostDir = ./hosts/kanto/routes/route1;
+          hostname = "route1"; 
+        };
       };
 
-      skuld = nixpkgs.lib.nixosSystem {
+      route2 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/skuld/configuration.nix
+          ./hosts/kanto/routes/route2/configuration.nix
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
         ];
-        specialArgs = { inherit inputs; hostname = "skuld"; };
+        specialArgs = { 
+          inherit inputs; 
+          hostDir = ./hosts/kanto/routes/route2;
+          hostname = "route2"; 
+        };
       };
     };
   }
