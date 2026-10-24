@@ -66,6 +66,20 @@
         };
       };
 
+      lavender = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/kanto/towns/lavender/configuration.nix
+          agenix.nixosModules.default
+          agenix-rekey.nixosModules.default
+        ];
+        specialArgs = {
+          inherit inputs;
+          hostDir = ./hosts/kanto/towns/lavender;
+          hostname = "lavender";
+        };
+      };
+
       route1 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
