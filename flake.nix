@@ -24,6 +24,20 @@
 
     # Configure our systems for each host
     nixosConfigurations = {
+      palette = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/kanto/towns/palette/configuration.nix
+          agenix.nixosModules.default
+          agenix-rekey.nixosModules.default
+        ];
+        specialArgs = {
+          inherit inputs;
+          hostDir = ./hosts/kanto/towns/palette;
+          hostname = "palette";
+        };
+      };
+
       celadon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -45,7 +59,8 @@
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
         ];
-        specialArgs = { inherit inputs;
+        specialArgs = { 
+          inherit inputs;
           hostDir = ./hosts/kanto/towns/vermilion;
           hostname = "vermilion";
         };
