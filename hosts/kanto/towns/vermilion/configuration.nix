@@ -6,6 +6,8 @@
     # Include services for this host.
     ../../../../modules/services/authelia
     ../../../../modules/services/traefik
+    # Include our secrets for this host.
+    ./secrets
     # Proxmox LXC.
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
   ];

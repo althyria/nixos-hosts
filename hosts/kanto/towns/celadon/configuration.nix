@@ -15,6 +15,8 @@
     ../../../../modules/containers/prowlarr.nix
     ../../../../modules/containers/radarr.nix
     ../../../../modules/containers/sonarr.nix
+    # Include our secrets for this host.
+    ./secrets
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
