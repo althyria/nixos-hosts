@@ -3,6 +3,10 @@
     # Global configuration.
     ../../../global/age.nix
     ../../../global/common.nix
+    # Include services for this host.
+    ../../../../modules/services/paperless.nix
+    # Include our secrets for this host.
+    ./secrets
     # Proxmox LXC.
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
   ];
@@ -29,6 +33,9 @@
     Cache = "yes";
     CacheFromLocalhost = "yes";
   };
+
+  # Open ports for paperless
+  networking.firewall.allowedTCPPorts = [28981];
 
   # Don't change this ...
   system.stateVersion = "26.05";

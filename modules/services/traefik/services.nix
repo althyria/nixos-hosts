@@ -34,5 +34,13 @@
         {url = "http://celadon.home.arpa:8686";}
       ];
     };
+
+    paperless = {
+      middlewares = ["lan-only"];
+      loadBalancer.servers = [
+        {url = "http://lavender.home.arpa:28981";}
+      ];
+      
+    };
   };
 }

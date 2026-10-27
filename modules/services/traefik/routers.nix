@@ -40,5 +40,13 @@
       ];
       service = "lidarr";
     };
+
+    paperless = {
+      rule = "Host(`docs.0x3b.sh`)";
+      entryPoints = [
+        "websecure"
+      ];
+      service = "paperless";
+    };
   };
 }
